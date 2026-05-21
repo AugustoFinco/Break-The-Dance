@@ -1,17 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using System.Linq;
-using Unity.VisualScripting;
+
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.SocialPlatforms.Impl;
+
 using UnityEngine.UI;
 
 public class ButtonScript : MonoBehaviour
 {
+    [Header("Váriaveis Gerais")]
     [SerializeField] public GameObject player;
     [SerializeField] public GameManager gameManager;
     [SerializeField] public Animator playerAnimator;
+    
 
     [Header("Botões de movimento base")]
     [SerializeField] public Button[] buttonsMoveBase;
@@ -98,11 +98,11 @@ public class ButtonScript : MonoBehaviour
             var spriteAtual = player.GetComponent<SpriteRenderer>();
             spriteAtual.sprite = sprites[0];
             gameManager.GainPoints(1);
+            gameManager.AddSpecialCount(1);
             playerAnimator.SetBool(bottomSimple1, true);
             playerAnimator.SetBool(bottomSimple2, false);
             playerAnimator.SetBool(bottomNormal, false);
             playerAnimator.SetBool(bottomSpecial, false);
-            Debug.Log(bottomSimple1);
         }
         
     }
@@ -115,6 +115,7 @@ public class ButtonScript : MonoBehaviour
             var spriteAtual = player.GetComponent<SpriteRenderer>();
             spriteAtual.sprite = sprites[1];
             gameManager.GainPoints(5);
+            gameManager.AddSpecialCount(1);
             playerAnimator.SetBool(bottomSimple1, false);
             playerAnimator.SetBool(bottomSimple2, true);
             playerAnimator.SetBool(bottomNormal, false);
@@ -131,6 +132,8 @@ public class ButtonScript : MonoBehaviour
             var spriteAtual = player.GetComponent<SpriteRenderer>();
             spriteAtual.sprite = sprites[2];
             gameManager.GainPoints(5);
+            gameManager.AddSpecialCount(1);
+            
             playerAnimator.SetBool(bottomSimple1, false);
             playerAnimator.SetBool(bottomSimple2, false);
             playerAnimator.SetBool(bottomNormal, true);
@@ -146,6 +149,7 @@ public class ButtonScript : MonoBehaviour
             var spriteAtual = player.GetComponent<SpriteRenderer>();
             spriteAtual.sprite = sprites[3];
             gameManager.GainPoints(10);
+            gameManager.ResetSpecial();
             playerAnimator.SetBool(bottomSimple1, false);
             playerAnimator.SetBool(bottomSimple2, false);
             playerAnimator.SetBool(bottomNormal, false);
